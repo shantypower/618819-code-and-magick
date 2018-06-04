@@ -64,7 +64,7 @@ window.renderStatistics = function (ctx, players, times) {
     if (i > 0) {
       barColor = 'rgba(' + 0 + ',' + 0 + ',' + 255 + ',' + Math.random() + ')';
     }
-    ctx.fillText(parseInt(times[i], 10), CLOUD_X + 4 * GAP + (BAR_SPACE + BAR_WIDTH) * i, Number(RESULT_SIZE) * 3 + GAP * 2);
+    ctx.fillText(parseInt(times[i], 10), CLOUD_X + 4 * GAP + (BAR_SPACE + BAR_WIDTH) * i, Number(RESULT_SIZE) * 3 + GAP * 2 + 150 - (BAR_HEIGHT * times[i]) / maxTime);
     ctx.fillStyle = barColor;
     ctx.fillRect(CLOUD_X + 4 * GAP + (BAR_SPACE + BAR_WIDTH) * i, CLOUD_HEIGHT - GAP * 2 - Number(RESULT_SIZE) - BAR_HEIGHT * times[i] / maxTime, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
     ctx.fillStyle = '#000';
