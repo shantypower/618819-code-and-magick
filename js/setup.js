@@ -33,12 +33,12 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 
-var getRandomArrowElement = function(arr) {
+var getRandomArrowElement = function (arr) {
   var randomElementIndex = Math.floor(Math.random() * arr.length);
   return arr[randomElementIndex];
 };
 
-var getWizardsImage = function(arrNames, arrSurnames, arrCoats, arrEyes) {
+var getWizardsImage = function (arrNames, arrSurnames, arrCoats, arrEyes) {
   var randomName = getRandomArrowElement(arrNames) + ' ' + getRandomArrowElement(arrSurnames);
   var randomCoat = getRandomArrowElement(arrCoats);
   var randomEyes = getRandomArrowElement(arrEyes);
@@ -49,7 +49,16 @@ var getWizardsImage = function(arrNames, arrSurnames, arrCoats, arrEyes) {
     wizardsImage.eyesColor = randomEyes;
     return wizardsImage
 };
-getWizardsImage(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COATS, WIZARD_EYES);
+
+var getWizardsGroup = function (arrNames, arrSurnames, arrCoats, arrEyes) {
+  var wizardsImages = [];
+  for (var i = 0; i <= 3; i++) {
+    wizardsImages[i] = getWizardsImage(arrNames, arrSurnames, arrCoats, arrEyes);
+  }
+  return wizardsImages;
+};
+
+getWizardsGroup(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COATS, WIZARD_EYES);
 /*
 var wizards = [
   {
