@@ -10,21 +10,37 @@ var WIZARD_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 16
 
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
+var setupUserName = setup.querySelector('.setup-user-name');
+var setupSubmit = setup.querySelector('.setup-submit');
+var setupWizard = setup.querySelector('.setup-wizard');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var setupFireballColor = setup.querySelector('.setup-fireball-wrap');
+var inputCoatColor = document.querySelector('input[name="coat-color"]');
+var inputEyesColor = document.querySelector('input[name="eyes-color"]');
+var inputFireballColor = document.querySelector('input[name="fireball-color"]');
+
 
 var onPopupEscPress = function(evt) {
+  if (setupUserName === document.activeElement) {
+    return evt;
+    } else {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
+}
 };
 
 var openPopup = function() {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
-//Если фокус находится на форме ввода имени, то окно закрываться не должно.
+
 var closePopup = function() {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
@@ -50,7 +66,24 @@ setupClose.addEventListener('keydown', function(evt) {
   }
 });
 
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+
+var changeWizardDetailColor = function(wizardElement, arrColor, colorStyleParametr, inputName) {
+  wizardElement.style[colorStyleParametr] = getRandomArrowElement(arrColor);
+  inputName.value = wizardElement.style[colorStyleParametr];
+}
+
+wizardCoat.addEventListener('click', function(evt){
+  changeWizardDetailColor(wizardCoat, WIZARD_COATS, 'fill', inputCoatColor)
+});
+wizardEyes.addEventListener('click', function(evt){
+  changeWizardDetailColor(wizardEyes, WIZARD_EYES, 'fill', inputEyesColor)
+});
+setupFireballColor.addEventListener('click', function(evt){
+  changeWizardDetailColor(setupFireballColor, FIREBALL_COLORS, 'background-color', inputFireballColor)
+});
+
+
+var similarListElement = setup.querySelector('.setup-similar-list');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
