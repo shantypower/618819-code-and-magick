@@ -28,14 +28,9 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-
 var onPopupEscPress = function (evt) {
-  if (setupUserName === document.activeElement) {
-    openPopup();
-  } else {
-    if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
-    }
+  if (evt.keyCode === ESC_KEYCODE && setupUserName !== evt.target) {
+    closePopup();
   }
 };
 
