@@ -1,7 +1,7 @@
 'use strict';
 (function () {
 
- export var setupDialogElement = document.querySelector('.setup');
+  export var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (downEvt) {
@@ -11,8 +11,8 @@
       x: downEvt.clientX,
       y: downEvt.clientY
     };
- export   var startX = startCoords.x;
- export   var starty = startCoords.y;
+    export   var startX = startCoords.x;
+    export   var starty = startCoords.y;
 
 
     var dragged = false;

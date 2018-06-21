@@ -27,7 +27,6 @@ var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
-import {startX, startY, setupDialogElement} from 'dialog';
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE && setupUserName !== evt.target) {
@@ -56,6 +55,7 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
+  import {startX, startY, setupDialogElement} from 'dialog';
   closePopup();
   setupDialogElement.style.top = startX + 'px';
   setupDialogElement.style.left = startY + 'px';
