@@ -1,16 +1,19 @@
 'use strict';
 (function () {
 
-  var setupDialogElement = document.querySelector('.setup');
+ export var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
 
-  dialogHandler.addEventListener('mousedown', function (evt) {
-    evt.preventDefault();
+  dialogHandler.addEventListener('mousedown', function (downEvt) {
+    downEvt.preventDefault();
 
     var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
+      x: downEvt.clientX,
+      y: downEvt.clientY
     };
+ export   var startX = startCoords.x;
+ export   var starty = startCoords.y;
+
 
     var dragged = false;
 
@@ -40,7 +43,7 @@
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function () {
+        var onClickPreventDefault = function (evt) {
           evt.preventDefault();
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
@@ -52,6 +55,5 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-
 
 })();
