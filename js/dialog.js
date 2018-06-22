@@ -12,8 +12,6 @@
       x: downEvt.clientX,
       y: downEvt.clientY
     };
-    var startX = startCoords.x;
-    var startY = startCoords.y;
 
     var dragged = false;
 
@@ -47,7 +45,7 @@
           var setupCoords = {
             setupX: setup.style.left,
             setupY: setup.style.top
-          }
+          };
           window.setupCoords = setupCoords;
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
