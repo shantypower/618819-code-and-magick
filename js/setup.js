@@ -37,6 +37,8 @@ var onPopupEscPress = function (evt) {
 var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+  setup.style.left = setupCoords.setupX + 'px';
+  setup.style.top = setupCoords.setupY + 'px';
 };
 
 var closePopup = function () {
@@ -55,11 +57,7 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  import {startX, startY, setupDialogElement} from 'dialog';
   closePopup();
-  setupDialogElement.style.top = startX + 'px';
-  setupDialogElement.style.left = startY + 'px';
-
 });
 
 setupClose.addEventListener('keydown', function (evt) {

@@ -1,8 +1,9 @@
 'use strict';
 (function () {
 
-  export var setupDialogElement = document.querySelector('.setup');
-  var dialogHandler = setupDialogElement.querySelector('.upload');
+  var setup = document.querySelector('.setup');
+  window.setup = setup;
+  var dialogHandler = setup.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (downEvt) {
     downEvt.preventDefault();
@@ -11,9 +12,8 @@
       x: downEvt.clientX,
       y: downEvt.clientY
     };
-    export   var startX = startCoords.x;
-    export   var starty = startCoords.y;
-
+    var startX = startCoords.x;
+    var startY = startCoords.y;
 
     var dragged = false;
 
@@ -31,9 +31,8 @@
         y: moveEvt.clientY
       };
 
-      setupDialogElement.style.top = (setupDialogElement.offsetTop - shift.y) + 'px';
-      setupDialogElement.style.left = (setupDialogElement.offsetLeft - shift.x) + 'px';
-
+      setup.style.top = (setup.offsetTop - shift.y) + 'px';
+      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
     };
 
     var onMouseUp = function (upEvt) {
@@ -45,6 +44,11 @@
       if (dragged) {
         var onClickPreventDefault = function (evt) {
           evt.preventDefault();
+          var setupCoords = {
+            setupX: setup.style.left,
+            setupY: setup.style.top
+          }
+          window.setupCoords = setupCoords;
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
