@@ -2,7 +2,6 @@
 (function () {
 
   var setup = document.querySelector('.setup');
-  window.setup = setup;
   var dialogHandler = setup.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (downEvt) {
@@ -42,16 +41,10 @@
       if (dragged) {
         var onClickPreventDefault = function (evt) {
           evt.preventDefault();
-          var setupCoords = {
-            setupX: setup.style.left,
-            setupY: setup.style.top
-          };
-          window.setupCoords = setupCoords;
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
       }
-
     };
 
     document.addEventListener('mousemove', onMouseMove);
