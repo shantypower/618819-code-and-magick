@@ -66,19 +66,19 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 /////////////////////
 var changeWizardDetailColor = function (wizardElement, arrColor, colorStyleParametr, inputName) {
-  wizardElement.style[colorStyleParametr] = getRandomArrowElement(arrColor);
+  wizardElement.style[colorStyleParametr] = window.getRandomArrowElement(arrColor);
   inputName.value = wizardElement.style[colorStyleParametr];
 };
-
+/*
 var getRandomArrowElement = function (arr) {
   var randomElementIndex = Math.floor(Math.random() * arr.length);
   return arr[randomElementIndex];
-};
+};*/
 
 var getWizardsImage = function (arrNames, arrSurnames, arrCoats, arrEyes) {
-  var randomName = getRandomArrowElement(arrNames) + ' ' + getRandomArrowElement(arrSurnames);
-  var randomCoat = getRandomArrowElement(arrCoats);
-  var randomEyes = getRandomArrowElement(arrEyes);
+  var randomName = window.getRandomArrowElement(arrNames) + ' ' + window.getRandomArrowElement(arrSurnames);
+  var randomCoat = window.getRandomArrowElement(arrCoats);
+  var randomEyes = window.getRandomArrowElement(arrEyes);
   var wizardsImage = {};
 
   wizardsImage.name = randomName;
