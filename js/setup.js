@@ -13,8 +13,8 @@ var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];*/
 
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
+//var setupOpen = document.querySelector('.setup-open');
+//var setupClose = setup.querySelector('.setup-close');
 var setupUserName = setup.querySelector('.setup-user-name');
 var setupWizard = setup.querySelector('.setup-wizard');
 var wizardCoat = setupWizard.querySelector('.wizard-coat');
@@ -28,7 +28,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 /////////////////// dialog.js
-var onPopupEscPress = function (evt) {
+/*var onPopupEscPress = function (evt) {
   if (evt.keyCode === window.constants.ESC_KEYCODE && setupUserName !== evt.target) {
     closePopup();
   }
@@ -63,7 +63,7 @@ setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === window.constants.ENTER_KEYCODE) {
     closePopup();
   }
-});
+});*/
 /////////////////////
 var changeWizardDetailColor = function (wizardElement, arrColor, colorStyleParametr, inputName) {
   wizardElement.style[colorStyleParametr] = window.getRandomArrowElement(arrColor);
