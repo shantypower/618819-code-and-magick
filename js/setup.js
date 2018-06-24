@@ -13,6 +13,8 @@
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
+  var similarWizardList = document.querySelector('.setup-similar');
+  similarWizardList.classList.remove('hidden');
 
   var changeWizardDetailColor = function (wizardElement, arrColor, colorStyleParametr, inputName) {
     wizardElement.style[colorStyleParametr] = window.getRandomArrowElement(arrColor);
