@@ -4,6 +4,7 @@
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
+  var setupUserName = setup.querySelector('.setup-user-name');
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === window.constants.ESC_KEYCODE && setupUserName !== evt.target) {
       closePopup();
@@ -40,5 +41,5 @@
       closePopup();
     }
   });
-  
+
 })();
