@@ -1,5 +1,6 @@
 'use strict';
 
+(function () {
 window.GameConstants = {
   Fireball: {
     size: window.fireballSize || 24,
@@ -822,4 +823,6 @@ window.Game = (function () {
   window.restartGame('img/wizard.gif', 'img/wizard-reversed.gif');
 
   return game;
+})();
+
 })();
