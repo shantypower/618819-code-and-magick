@@ -1,6 +1,6 @@
 'use strict';
-(function () {
 
+(function () {
   var setup = document.querySelector('.setup');
   var dialogHandler = setup.querySelector('.upload');
 
