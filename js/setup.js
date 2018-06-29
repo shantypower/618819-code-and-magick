@@ -33,15 +33,15 @@
     return wizardsImage;
   };
 
-  var getWizardsGroup = function (arrNames, arrSurnames, arrCoats, arrEyes) {
+ /* var getWizardsGroup = function (arrNames, arrSurnames, arrCoats, arrEyes) {
     var wizardsImages = [];
     for (var i = 0; i <= 3; i++) {
       wizardsImages[i] = getWizardsImage(arrNames, arrSurnames, arrCoats, arrEyes);
     }
     return wizardsImages;
-  };
+  };*/
 
-  var wizards = getWizardsGroup(window.constants.WIZARD_NAMES, window.constants.WIZARD_SURNAMES, window.constants.WIZARD_COATS, window.constants.WIZARD_EYES);
+ // var wizards = getWizardsGroup(window.constants.WIZARD_NAMES, window.constants.WIZARD_SURNAMES, window.constants.WIZARD_COATS, window.constants.WIZARD_EYES);
 
   var createWizard = function (node, wizard) {
     var cloneWizardElement = node.cloneNode(true);
@@ -60,15 +60,38 @@
     return cloneWizardElement;
   };
 
+  var onLoad = function (data) {
+    window.getRandomArrowElement(data);
+    setup.querySelector('.setup-similar').classList.remove('hidden');
+
+    for (var i = 0; i < data.length; i++) {
+      renderWizard(data[i]);
+    }
+  };
+
   var renderWizard = function (node) {
     var fragment = document.createDocumentFragment();
-    fragment.appendChild(createWizard(node, wizards));
+    fragment.appendChild(createWizard(node, data));
     similarListElement.appendChild(fragment);
     return fragment;
   };
 
-  for (var i = 0; i < wizards.length; i++) {
-    renderWizard(createWizard(similarWizardTemplate, wizards[i]));
-  }
+  var onError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
 
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.backend.load(onLoad, onError);
+
+window.setup = {
+  onError: onError,
+  onLoad: onLoad
+}
 })();

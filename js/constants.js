@@ -4,6 +4,8 @@
   window.constants = {
     ESC_KEYCODE: 27,
     ENTER_KEYCODE: 13,
+    LOAD_TIME: 100000,
+    SUCCESS_STATUS: 200,
     WIZARD_NAMES: [
       'Иван',
       'Хуан Себастьян',
