@@ -10,21 +10,21 @@
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
         window.setup.onLoad(xhr.response);
-        } else {
-          window.setup.onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
-        }
-      });
-      xhr.addEventListener('error', function () {
-        window.setup.onError('Произошла ошибка соединения');
-      });
-      xhr.addEventListener('timeout', function () {
-        window.setup.onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
-      });
+      } else {
+        window.setup.onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+      }
+    });
+    xhr.addEventListener('error', function () {
+      window.setup.onError('Произошла ошибка соединения');
+    });
+    xhr.addEventListener('timeout', function () {
+      window.setup.onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
 
-      xhr.timeout = window.constants.LOAD_TIME;
-      xhr.open('GET', DATA_URL);
-      xhr.send();
-    };
+    xhr.timeout = window.constants.LOAD_TIME;
+    xhr.open('GET', DATA_URL);
+    xhr.send();
+  };
 
   var save = function (data, onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -59,8 +59,8 @@
     xhr.send(data);
   };
 
-window.backend = {
-  load: load,
-  save: save
-};
+  window.backend = {
+    load: load,
+    save: save
+  };
 })();
