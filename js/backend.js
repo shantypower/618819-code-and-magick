@@ -1,12 +1,13 @@
 'use strict';
 
 (function () {
-  var DATA_URL = 'https://js.dump.academy/code-and-magick/data';
   var URL = 'https://js.dump.academy/code-and-magick';
-  var xhr = new XMLHttpRequest();
-  xhr.responseType = 'json';
+  var DATA = URL + '/data';
+
 
   var load = function (onLoad, onError) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
         onLoad(xhr.response);
@@ -18,41 +19,34 @@
       onError('Произошла ошибка соединения');
     });
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      onError('Запрос не успел выполниться за ' + window.constants.LOAD_TIME + 'мс');
     });
 
-    xhr.timeout = window.constants.LOAD_TIME;
-    xhr.open('GET', DATA_URL);
+    // xhr.timeout = window.constants.LOAD_TIME;
+    xhr.open('GET', DATA);
     xhr.send();
   };
 
   var save = function (data, onLoad, onError) {
-
+    var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.timeout = window.constants.LOAD_TIME;
+    // xhr.timeout = window.constants.LOAD_TIME;
 
-    xhr.addEventListener('load', function (evt) {
-      try {
-        if (evt.target.status === window.constants.SUCCESS_STATUS) {
-          onLoad();
-        } else {
-          onError('Статус загрузки ' + evt.target.status);
-        }
-      } catch (err) {
-        onError('Ошибка - ' + err.name + ' : ' + err.message);
+    xhr.addEventListener('load', function () {
+      if (xhr.status === window.constants.SUCCESS_STATUS) {
+        onLoad(xhr.response);
+      } else {
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
-
-    xhr.addEventListener('timeout', function (evt) {
-      onError('Загрузка не успела произойти за ' + evt.target.timeout + 'ms');
-    });
-
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка загрузки данных');
+      onError('Произошла ошибка соединения');
+    });
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + window.constants.LOAD_TIME + 'мс');
     });
 
     xhr.open('POST', URL);
-
     xhr.send(data);
   };
 

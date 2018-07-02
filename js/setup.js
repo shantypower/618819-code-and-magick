@@ -68,6 +68,9 @@
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
+    document.addEventListener('click', function () {
+      node.remove();
+    });
   };
 
   window.backend.load(successHandler, errorHandler);
