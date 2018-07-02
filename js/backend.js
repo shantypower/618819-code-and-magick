@@ -22,7 +22,6 @@
       onError('Запрос не успел выполниться за ' + window.constants.LOAD_TIME + 'мс');
     });
 
-    // xhr.timeout = window.constants.LOAD_TIME;
     xhr.open('GET', DATA);
     xhr.send();
   };
@@ -30,7 +29,6 @@
   var save = function (data, onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    // xhr.timeout = window.constants.LOAD_TIME;
 
     xhr.addEventListener('load', function () {
       if (xhr.status === window.constants.SUCCESS_STATUS) {
