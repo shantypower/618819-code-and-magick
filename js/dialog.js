@@ -2,7 +2,6 @@
 
 (function () {
   var setup = document.querySelector('.setup');
-  var form = setup.querySelector('.setup-wizard-form');
   var dialogHandler = setup.querySelector('.upload');
 
   dialogHandler.addEventListener('mousedown', function (downEvt) {
@@ -50,13 +49,6 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-  });
-
-  form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), function (response) {
-      setup.classList.add('hidden');
-    });
-    evt.preventDefault();
   });
 
 })();

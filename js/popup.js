@@ -5,6 +5,7 @@
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
   var setupUserName = setup.querySelector('.setup-user-name');
+  var submit = document.querySelector('.setup-submit');
   var onPopupEscPress = function (evt) {
     if (evt.keyCode === window.constants.ESC_KEYCODE && setupUserName !== evt.target) {
       closePopup();
@@ -41,4 +42,17 @@
       closePopup();
     }
   });
+
+  var onSubmitClick = function (evt) {
+    evt.preventDefault();
+    var form = evt.target.form;
+
+    if (setupUserName.checkValidity()) {
+      window.backend.save(new FormData(form), closePopup, window.setup.errorHandler);
+    } else {
+      window.setup.onError(setupUserName.validationMessage);
+    }
+  };
+
+  submit.addEventListener('submit', onSubmitClick);
 })();

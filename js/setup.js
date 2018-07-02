@@ -21,26 +21,6 @@
     inputName.value = wizardElement.style[colorStyleParametr];
   };
 
-  var getWizardsImage = function (data) {
-    var randomName = data.name;
-    var randomCoat = data.colorCoat;
-    var randomEyes = data.colorEyes;
-    var wizardsImage = {};
-
-    wizardsImage.name = randomName;
-    wizardsImage.coatColor = randomCoat;
-    wizardsImage.eyesColor = randomEyes;
-    return wizardsImage;
-  };
-
-  var getWizardsGroup = function (data) {
-    var wizardsImages = [];
-    for (var i = 0; i <= 3; i++) {
-      renderWizard(data[i]);
-    }
-    return wizardsImages;
-  };
-
   var createWizard = function (node) {
     var cloneWizardElement = similarWizardTemplate.cloneNode(true);
     cloneWizardElement.querySelector('.setup-similar-label').textContent = node.name;
@@ -69,31 +49,31 @@
     return fragment;
   };
 
-  var onLoad = function (data) {
+  var successHandler = function (data) {
     renderWizard(data);
     setup.querySelector('.setup-similar').classList.remove('hidden');
   };
 
-  var onError = function (errorMessage) {
+  var errorHandler = function (errorMessage) {
     var node = document.createElement('div');
     node.style = 'z-index: 100; text-align: center; margin-left: -200px; background-color: #fefefe; border-radius: 10px; box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);';
     node.style.position = 'fixed';
     node.style.top = '30px';
     node.style.left = '50%';
     node.style.width = '400px';
-    node.style.height = '150px';
+    node.style.minHeight = '150px';
     node.style.padding = '18px 25px 25px 25px';
-    node.style.fontSize = '40px';
+    node.style.fontSize = '15px';
     node.style.color = 'red';
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
-  window.backend.load(onLoad, onError);
+  window.backend.load(successHandler, errorHandler);
 
-window.setup = {
-  onError: onError,
-  onLoad: onLoad
-}
+  window.setup = {
+    errorHandler: errorHandler,
+    successHandler: successHandler
+  };
 })();

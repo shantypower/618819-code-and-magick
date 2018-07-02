@@ -9,16 +9,16 @@
   var load = function (onLoad, onError) {
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
-        window.setup.onLoad(xhr.response);
+        onLoad(xhr.response);
       } else {
-        window.setup.onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
     });
     xhr.addEventListener('error', function () {
-      window.setup.onError('Произошла ошибка соединения');
+      onError('Произошла ошибка соединения');
     });
     xhr.addEventListener('timeout', function () {
-      window.setup.onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
     xhr.timeout = window.constants.LOAD_TIME;
@@ -27,31 +27,28 @@
   };
 
   var save = function (data, onLoad, onError) {
-    var xhr = new XMLHttpRequest();
-
 
     xhr.responseType = 'json';
     xhr.timeout = window.constants.LOAD_TIME;
 
-
     xhr.addEventListener('load', function (evt) {
       try {
         if (evt.target.status === window.constants.SUCCESS_STATUS) {
-          window.setup.onLoad();
+          onLoad();
         } else {
-          window.setup.onError('Статус загрузки ' + evt.target.status);
+          onError('Статус загрузки ' + evt.target.status);
         }
       } catch (err) {
-        window.setup.onError('Ошибка - ' + err.name + ' : ' + err.message);
+        onError('Ошибка - ' + err.name + ' : ' + err.message);
       }
     });
 
     xhr.addEventListener('timeout', function (evt) {
-      window.setup.onError('Загрузка не успела произойти за ' + evt.target.timeout + 'ms');
+      onError('Загрузка не успела произойти за ' + evt.target.timeout + 'ms');
     });
 
     xhr.addEventListener('error', function () {
-      window.setup.onError('Произошла ошибка загрузки данных');
+      onError('Произошла ошибка загрузки данных');
     });
 
     xhr.open('POST', URL);
