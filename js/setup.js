@@ -59,6 +59,7 @@
   });
 
   var renderWizard = function (node) {
+    similarListElement.innerHTML = ''
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < 4; i++) {
 
@@ -76,7 +77,7 @@
 
 
   var updateWizards = function () {
-    similarWizardTemplate.innerHTML = '';
+   // similarWizardTemplate.innerHTML = '';
     renderWizard(wizards.slice().sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
