@@ -29,7 +29,7 @@
     }
 
     return rank;
-  }
+  };
 
   var changeWizardDetailColor = function (wizardElement, arrColor, colorStyleParametr, inputName) {
     newColor = window.getRandomArrowElement(arrColor);
@@ -59,7 +59,7 @@
   });
 
   var renderWizard = function (node) {
-    similarListElement.innerHTML = ''
+    similarListElement.innerHTML = '';
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < 4; i++) {
 
@@ -77,15 +77,14 @@
 
 
   var updateWizards = function () {
-   // similarWizardTemplate.innerHTML = '';
     renderWizard(wizards.slice().sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
         rankDiff = wizards.indexOf(left) - wizards.indexOf(right);
       }
       return rankDiff;
-    }))
-  }
+    }));
+  };
 
   var errorHandler = function (errorMessage) {
     var node = document.createElement('div');
