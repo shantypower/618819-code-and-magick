@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var URL = 'http://127.0.0.1:5000/api';
+  var URL = 'https://js.dump.academy/code-and-magick';
   var DATA = URL + '/data';
 
   var load = function (onLoad, onError) {
